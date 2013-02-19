@@ -1,20 +1,23 @@
 function Controller() {
+    function doClick(e) {
+        alert($.label.text);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     $model = arguments[0] ? arguments[0].$model : null;
     var $ = this, exports = {}, __defers = {};
     $.__views.tabGroup = A$(Ti.UI.createTabGroup({
         id: "tabGroup"
     }), "TabGroup", null);
-    $.__views.__alloyId16 = Alloy.createController("Fugitives", {
-        id: "__alloyId16"
+    $.__views.__alloyId15 = Alloy.createController("Fugitives", {
+        id: "__alloyId15"
     });
-    $.__views.tabGroup.addTab($.__views.__alloyId16.getViewEx({
+    $.__views.tabGroup.addTab($.__views.__alloyId15.getViewEx({
         recurse: !0
     }));
-    $.__views.__alloyId18 = Alloy.createController("Captured", {
-        id: "__alloyId18"
+    $.__views.__alloyId17 = Alloy.createController("Captured", {
+        id: "__alloyId17"
     });
-    $.__views.tabGroup.addTab($.__views.__alloyId18.getViewEx({
+    $.__views.tabGroup.addTab($.__views.__alloyId17.getViewEx({
         recurse: !0
     }));
     $.addTopLevelView($.__views.tabGroup);
@@ -22,17 +25,24 @@ function Controller() {
     _.extend($, $.__views);
     Ti.API.info("seeded: " + Ti.App.Properties.hasProperty("seeded"));
     if (!Ti.App.Properties.hasProperty("seeded")) {
-        var names = [ "Jeff Haynie", "Nolan Wright", "Blain Hamon", "Aaron Saunders", "Anthony Decena" ];
-        for (var i = 0; i < names.length; i++) {
-            var badguy = Alloy.createModel("fugitives", {
-                name: names[i]
-            });
-            badguy.save();
-        }
-        Ti.App.Properties.setString("seeded", "yessir");
-    }
-    $.tabGroup.open();
-    Alloy.Collections.Fugitives.fetch();
+        Alloy.Collections.Fugitive.reset([ {
+            name: "Jeff Haynie"
+        }, {
+            name: "Nolan Wright"
+        }, {
+            name: "Don Thorp"
+        }, {
+            name: "Marshall Culpepper"
+        }, {
+            name: "Blain Hamon"
+        } ]);
+        Alloy.Collections.Fugitive.each(function(_m) {
+            _m.save();
+        });
+        Ti.App.Properties.setString("seeded", "yuppers");
+        $.tabGroup.open();
+    } else $.tabGroup.open();
+    Alloy.Collections.Fugitive.fetch();
     _.extend($, exports);
 }
 

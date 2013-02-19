@@ -1,12 +1,12 @@
 <Alloy>
-	<!-- Add your reference to the collection here -->
-	<Collection src="Fugitives" />
-	<Tab id="fugitiveTab" title="Fugitives" icon="images/fugitives.png">
-		<Window title="Fugitives">
-			<!-- Update table tag to include reference to data collection -->
-			<TableView id='fugitives' dataCollection="Fugitives">
-				<Require src="FugitiveRow"/>
-			</TableView>
-		</Window>
-	</Tab>
+    <Collection src="Fugitive" />
+    <Tab id="fugitiveTab" title="Fugitives">
+        <Window id="fugitiveWindow"  title="Fugitives" class='container'>
+            <TableView id="table" dataCollection="Fugitive" dataFilter="dofilter" >
+                <Require src="FugitiveRow"/>
+            </TableView>
+            <!-- hidden and used later -->
+            <Button id="add" title="Add" top="-50dp"></Button>
+        </Window>
+    </Tab>
 </Alloy>
