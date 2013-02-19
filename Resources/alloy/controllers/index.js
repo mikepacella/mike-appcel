@@ -2,25 +2,37 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     $model = arguments[0] ? arguments[0].$model : null;
     var $ = this, exports = {}, __defers = {};
-    $.__views.index = A$(Ti.UI.createTabGroup({
-        id: "index"
+    $.__views.tabGroup = A$(Ti.UI.createTabGroup({
+        id: "tabGroup"
     }), "TabGroup", null);
-    $.__views.__alloyId1 = Alloy.createController("Fugitives", {
-        id: "__alloyId1"
+    $.__views.__alloyId16 = Alloy.createController("Fugitives", {
+        id: "__alloyId16"
     });
-    $.__views.index.addTab($.__views.__alloyId1.getViewEx({
+    $.__views.tabGroup.addTab($.__views.__alloyId16.getViewEx({
         recurse: !0
     }));
-    $.__views.__alloyId2 = Alloy.createController("Captured", {
-        id: "__alloyId2"
+    $.__views.__alloyId18 = Alloy.createController("Captured", {
+        id: "__alloyId18"
     });
-    $.__views.index.addTab($.__views.__alloyId2.getViewEx({
+    $.__views.tabGroup.addTab($.__views.__alloyId18.getViewEx({
         recurse: !0
     }));
-    $.addTopLevelView($.__views.index);
+    $.addTopLevelView($.__views.tabGroup);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    $.index.open();
+    Ti.API.info("seeded: " + Ti.App.Properties.hasProperty("seeded"));
+    if (!Ti.App.Properties.hasProperty("seeded")) {
+        var names = [ "Jeff Haynie", "Nolan Wright", "Blain Hamon", "Aaron Saunders", "Anthony Decena" ];
+        for (var i = 0; i < names.length; i++) {
+            var badguy = Alloy.createModel("fugitives", {
+                name: names[i]
+            });
+            badguy.save();
+        }
+        Ti.App.Properties.setString("seeded", "yessir");
+    }
+    $.tabGroup.open();
+    Alloy.Collections.Fugitives.fetch();
     _.extend($, exports);
 }
 
