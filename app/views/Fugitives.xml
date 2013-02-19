@@ -1,0 +1,7 @@
+<Alloy>
+	<Tab id="fugitiveTab" title="Fugitives" icon="fugitives.png">
+        <Window id="fugitiveWindow" title="Fugitives">
+        	<TableView id="fugitiveTable" />
+        </Window>
+    </Tab>
+</Alloy>
