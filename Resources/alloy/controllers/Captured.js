@@ -3,18 +3,21 @@ function Controller() {
     $model = arguments[0] ? arguments[0].$model : null;
     var $ = this, exports = {}, __defers = {};
     $.__views.capturedWindow = A$(Ti.UI.createWindow({
-        backgroundColor: "#fff",
+        backgroundColor: "transparent",
+        backgroundImage: "images/grain.png",
+        barColor: "#6d0a0c",
         id: "capturedWindow",
-        title: "Capturedo"
+        title: "Captured"
     }), "Window", null);
     $.__views.capturedTable = A$(Ti.UI.createTableView({
+        backgroundColor: "transparent",
         id: "capturedTable"
     }), "TableView", $.__views.capturedWindow);
     $.__views.capturedWindow.add($.__views.capturedTable);
     $.__views.capturedTab = A$(Ti.UI.createTab({
         window: $.__views.capturedWindow,
         id: "capturedTab",
-        title: "Capturedo",
+        title: "Captured",
         icon: "captured.png"
     }), "Tab", null);
     $.addTopLevelView($.__views.capturedTab);

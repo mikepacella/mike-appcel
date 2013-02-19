@@ -3,18 +3,21 @@ function Controller() {
     $model = arguments[0] ? arguments[0].$model : null;
     var $ = this, exports = {}, __defers = {};
     $.__views.fugitiveWindow = A$(Ti.UI.createWindow({
-        backgroundColor: "#fff",
+        backgroundColor: "transparent",
+        backgroundImage: "images/grain.png",
+        barColor: "#6d0a0c",
         id: "fugitiveWindow",
-        title: "Fugitive"
+        title: "Fugitives"
     }), "Window", null);
     $.__views.fugitiveTable = A$(Ti.UI.createTableView({
+        backgroundColor: "transparent",
         id: "fugitiveTable"
     }), "TableView", $.__views.fugitiveWindow);
     $.__views.fugitiveWindow.add($.__views.fugitiveTable);
     $.__views.fugitiveTab = A$(Ti.UI.createTab({
         window: $.__views.fugitiveWindow,
         id: "fugitiveTab",
-        title: "Fugitive",
+        title: "Fugitives",
         icon: "fugitives.png"
     }), "Tab", null);
     $.addTopLevelView($.__views.fugitiveTab);
